@@ -24,7 +24,13 @@ const yeoman = require('yeoman-environment');
 const _ = require('lodash');
 const path = require('path');
 
-const { normalizeBlueprintName, packageNameToNamespace, loadYoRc, loadBlueprintsFromConfiguration, loadOtherModulesFromConfiguration } = require('../generators/utils');
+const {
+    normalizeBlueprintName,
+    packageNameToNamespace,
+    loadYoRc,
+    loadBlueprintsFromConfiguration,
+    loadOtherModulesFromConfiguration
+} = require('../generators/utils');
 
 const CLI_NAME = 'jhipster';
 const GENERATOR_NAME = 'generator-jhipster';

@@ -47,6 +47,7 @@ const JHIPSTER_NS = CLI_NAME;
 const argBlueprints = loadBlueprints();
 const configBlueprints = loadBlueprintsFromYoRc().map(bp => bp.name);
 const allBlueprints = [...new Set([...argBlueprints, ...configBlueprints])];
+logger.debug('allBlueprints', JSON.stringify(allBlueprints));
 
 const configOtherModules = loadOtherModulesFromYoRc().map(om => om.name);
 logger.debug('configOtherModules', JSON.stringify(configOtherModules));
