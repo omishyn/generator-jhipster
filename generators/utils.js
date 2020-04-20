@@ -72,7 +72,8 @@ module.exports = {
     stringHashCode,
     RandexpWithFaker,
     gitExec,
-    isGitInstalled
+    isGitInstalled,
+    loadOtherModulesFromConfiguration
 };
 
 /**
@@ -745,4 +746,17 @@ function isGitInstalled(callback) {
     const code = gitExec('--version', { trace: false }).code;
     if (callback) callback(code);
     return code === 0;
+}
+
+/**
+ * Loads the OtherModules information from the configuration of the specified generator.
+ * @param config - the generator's configuration object.
+ * @returns {Array} an array that contains the info for each blueprint
+ */
+function loadOtherModulesFromConfiguration(config) {
+    // handle both config based on yeoman's Storage object, and direct configuration loaded from .yo-rc.json
+    const configuration = config && config.getAll && typeof config.getAll === 'function' ? config.getAll() || {} : config;
+    // load otherModules from config file
+
+    return configuration.otherModules || [];
 }

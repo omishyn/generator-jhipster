@@ -24,7 +24,7 @@ const yeoman = require('yeoman-environment');
 const _ = require('lodash');
 const path = require('path');
 
-const { normalizeBlueprintName, packageNameToNamespace, loadYoRc, loadBlueprintsFromConfiguration } = require('../generators/utils');
+const { normalizeBlueprintName, packageNameToNamespace, loadYoRc, loadBlueprintsFromConfiguration, loadOtherModulesFromConfiguration } = require('../generators/utils');
 
 const CLI_NAME = 'jhipster';
 const GENERATOR_NAME = 'generator-jhipster';
@@ -339,6 +339,22 @@ const loadSharedOptions = blueprintPackagePaths => {
     return result;
 };
 
+const loadOtherModulesFromYoRc = () => {
+    const yoRc = loadYoRc();
+    if (!yoRc || !yoRc['generator-jhipster']) {
+        return [];
+    }
+    return loadOtherModulesFromConfiguration(yoRc['generator-jhipster']);
+};
+
+const loadOtherModules = () => {
+    const yoRc = loadYoRc();
+    if (!yoRc || !yoRc['generator-jhipster']) {
+        return [];
+    }
+    return loadOtherModulesFromConfiguration(yoRc['generator-jhipster']);
+};
+
 module.exports = {
     CLI_NAME,
     GENERATOR_NAME,
@@ -358,5 +374,7 @@ module.exports = {
     getBlueprintPackagePaths,
     loadBlueprintCommands,
     loadSharedOptions,
-    getOptionAsArgs
+    getOptionAsArgs,
+    loadOtherModules,
+    loadOtherModulesFromYoRc
 };
